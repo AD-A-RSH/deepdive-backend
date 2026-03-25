@@ -15,6 +15,8 @@ from sqlalchemy import create_engine, event
 from sqlalchemy.orm import Session, sessionmaker
 
 from app.core.config import settings
+import pymysql
+pymysql.install_as_MySQLdb()
 
 # ── Engine ────────────────────────────────────────────────────
 engine = create_engine(
