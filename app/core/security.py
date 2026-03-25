@@ -19,9 +19,9 @@ from app.core.config import settings
 _pwd_ctx = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
-def hash_password(plain):
-    plain = "admin123"   # 🔥 FORCE FIX (ignore env completely)
-    return _pwd_ctx.hash(plain)
+def hash_password(plain: str) -> str:
+    encoded = plain.encode("utf-8")[:72]
+    return _pwd_ctx.hash(encoded)
 
 def verify_password(plain: str, hashed: str) -> bool:
     """
