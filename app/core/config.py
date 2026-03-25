@@ -45,6 +45,11 @@ class Settings(BaseSettings):
     # ── CORS ─────────────────────────────────────────
     ALLOWED_ORIGINS: str = "http://localhost:5173,http://localhost:3000"
 
+    # ── Frontend URL (used for building share links) ──
+    # Set this in Railway to your Vercel URL.
+    # NEVER leave this as "*" — it will corrupt poll share_url values.
+    FRONTEND_URL: str = "http://localhost:5173"
+
     # ── First superuser ───────────────────────────────
     FIRST_SUPERUSER_EMAIL: str = "admin@deepdive.com"
     FIRST_SUPERUSER_PASSWORD: str = "changeme123"

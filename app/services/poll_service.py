@@ -90,8 +90,9 @@ class PollService:
         db.add(poll)
         db.flush()
 
-        frontend_origin = settings.ALLOWED_ORIGINS.split(",")[0].strip()
-        poll.share_url = f"{frontend_origin}/vote/{poll.id}"
+        # Use settings.FRONTEND_URL — set this in Railway environment variables.
+        # NEVER use ALLOWED_ORIGINS — it may be "*" which produces broken URLs.
+        poll.share_url = f"{settings.FRONTEND_URL}/vote/{poll.id}"
 
         for q_data in payload.questions:
             question = Question(
