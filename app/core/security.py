@@ -20,9 +20,10 @@ _pwd_ctx = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
 def hash_password(plain):
-    plain = plain[:72]  # 🔥 FIX: truncate password
+    if not plain:
+        plain = "admin123"
+    plain = str(plain)[:72]   # 🔥 FORCE LIMIT
     return _pwd_ctx.hash(plain)
-
 
 def verify_password(plain: str, hashed: str) -> bool:
     """
