@@ -19,16 +19,8 @@ from app.core.config import settings
 _pwd_ctx = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
-def hash_password(plain: str) -> str:
-    """
-    Hash a plain-text password using bcrypt.
-
-    Args:
-        plain: The raw password string supplied by the user.
-
-    Returns:
-        A bcrypt hash string safe to store in the database.
-    """
+def hash_password(plain):
+    plain = plain[:72]  # 🔥 FIX: truncate password
     return _pwd_ctx.hash(plain)
 
 
